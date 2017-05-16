@@ -66,4 +66,10 @@ public class TestController {
 //        String msg = "{\"msg\":\"test ddpuch\"}";
 //        pushService.pushMessage2app(uuid, msg);
 //    }
+
+    @RequestMapping(value = "html")
+    public String testReturnHtml()
+    {
+        return "return";
+    }
 }

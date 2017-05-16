@@ -35,5 +35,7 @@ public interface UserService {
 
     Users doGetUserInfoByUid(int uid);
 
+    UserDTO doGetUserDTOByUid(int uid);
+
     List<Users> doGetMembersByUid(int uid);
 }

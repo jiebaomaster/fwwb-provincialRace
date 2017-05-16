@@ -49,7 +49,7 @@ public class UserController {
         Users users = userService.doLogin(userLoginDTO.getPhone_num(), userLoginDTO.getPassword());
 
         ReturnDTO returnDTO = new ReturnDTO();
-        returnDTO.setRequest_type("login");
+        returnDTO.setRequest_type("login.html");
         if (users != null) {
             returnDTO.setStatus("success");
             Map<String, Object> map = new HashMap<>();

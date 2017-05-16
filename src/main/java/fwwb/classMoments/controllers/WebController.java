@@ -2,6 +2,7 @@ package fwwb.classMoments.controllers;
 
 import fwwb.classMoments.model.Users;
 import fwwb.classMoments.services.UserService;
+import fwwb.classMoments.utils.ConstantValues;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -13,7 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -30,63 +33,48 @@ public class WebController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/form/{formName}", method = RequestMethod.GET)
-    public String showApp(
-            @PathVariable String formName
-    ) {
-        return formName;
-    }
-
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String admin() {
-        return "admin";
+    public String admin(
+            @CookieValue(value = "uid", required = false) String uid,
+            @CookieValue(value = "access-token", required = false) String token,
+            @CookieValue(value = "remember-me", required = false) String rememberMe
+    ) {
+        if (rememberMe != null && rememberMe.equals("yes") && userService.doCheckToken(token, uid)) {
+            return "admin";
+        } else {
+            return "login";
+        }
     }
 
     @RequestMapping("/login")
-    public ModelAndView login(
+    public String login(
             @RequestParam String phone_num,
             @RequestParam String password,
-            ModelAndView modelAndView
+            @RequestParam String rememberMe,
+            HttpServletResponse httpServletResponse
     ) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        Users users = userService.doLogin(phone_num, password);
-        if (users != null) {
-            modelAndView.setViewName("redirect:/webapp/admin");
-        } else {
-            modelAndView.setViewName("redirect:/webapp/form/login");
+        Users users;
+        try {
+            users = userService.doLogin(phone_num, password);
+        } catch (Exception e) {
+            return "error";
         }
-        return modelAndView;
-    }
 
-    @RequestMapping(value = "testAjax", method = RequestMethod.POST)
-    public ModelAndView test(
-            @RequestBody Map<String, String> map,
-            ModelAndView modelAndView
-    ) {
-        Users users = new Users();
-        modelAndView.addObject(users);
-        modelAndView.setViewName("redirect:/webapp/admin");
-        return modelAndView;
-    }
+        if (users != null) {
+            Cookie uid = new Cookie("uid", users.getId().toString());
+            Cookie accessToken = new Cookie("access-token", users.getAccessToken());
+            httpServletResponse.addCookie(uid);
+            httpServletResponse.addCookie(accessToken);
 
-    @RequestMapping(value = "/download/{filename}")
-    public ResponseEntity<byte[]> download(
-            @PathVariable String filename,
-            HttpServletRequest httpServletRequest,
-            Model model
-    ) throws Exception {
-        String path = httpServletRequest.getServletContext().getRealPath("/resources/html/excel/");
-        File file = new File(path + File.separator + filename);
-        HttpHeaders httpHeaders = new HttpHeaders();
-        String downloadFielName;
-            downloadFielName = new String(filename.getBytes("UTF-8"), "iso-8859-1");
-            httpHeaders.setContentDispositionFormData("attachment", downloadFielName);
-            httpHeaders.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-            return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file), httpHeaders, HttpStatus.CREATED);
+            //选择了记住我则设置一个7天过期的cookie
+            if (rememberMe.equals("yes")) {
+                Cookie rememberMeCookie = new Cookie("remember-me", "yes");
+                rememberMeCookie.setMaxAge(ConstantValues.ONE_DAY_TIMESTAMP * 7);
+                httpServletResponse.addCookie(rememberMeCookie);
+            }
+            return "admin";
+        } else {
+            return "login";
+        }
     }
-//    @RequestMapping(value = "login",method = RequestMethod.POST)
-//    public ModelAndView login(
-//
-//    ) {
-//
-//    }
 }

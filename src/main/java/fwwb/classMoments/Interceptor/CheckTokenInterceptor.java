@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CheckTokenInterceptor implements HandlerInterceptor {
     private static final String[] IGNORE_URI = {
-            "/user/login",
+            "/user/login.html",
             "/app","user/passwd_reset",
-            "/webapp/form/login",
+            "/webapp/form/login.html",
             "/webapp/testAjax",
             "/webapp/admin"
     };

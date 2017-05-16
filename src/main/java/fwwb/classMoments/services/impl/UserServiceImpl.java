@@ -106,6 +106,12 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
+    public UserDTO doGetUserDTOByUid(int uid) {
+        return usersMapper.selectUserDTOByPrimaryKey(uid);
+    }
+
+    @Transactional
+    @Override
     public List<Users> doGetMembersByUid(int uid) {
         Users users = usersMapper.selectByPrimaryKey(uid);
         return usersMapper

@@ -13,7 +13,7 @@ function login() {
     /*var data = $("#form_login").serializeArray();
     $.ajax({
         type: "POST",
-        url: "login.do",
+        url: "login.html.do",
         data: data,
         success: function () {
         }
