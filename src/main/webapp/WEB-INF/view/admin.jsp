@@ -199,7 +199,7 @@
             });
 
     </script>
-    <script src="<%=request.getContextPath()%>/resources/js/controllers/adminCtrl.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/controllers/adminCtrl.indexCtrl.js"></script>
 </head>
 <!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
 <!-- the fixed layout is not compatible with sidebar-mini -->

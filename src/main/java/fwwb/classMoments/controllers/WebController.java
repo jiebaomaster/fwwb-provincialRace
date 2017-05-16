@@ -26,32 +26,43 @@ import java.util.Map;
  * Created by hongcj on 2017/5/8.
  */
 
-@RequestMapping(value = "/webapp")
+@RequestMapping(value = "webapp")
 @Controller
 public class WebController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String admin(
-            @CookieValue(value = "uid", required = false) String uid,
-            @CookieValue(value = "access-token", required = false) String token,
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String login(
             @CookieValue(value = "remember-me", required = false) String rememberMe
     ) {
-        if (rememberMe != null && rememberMe.equals("yes") && userService.doCheckToken(token, uid)) {
-            return "admin";
+        if (rememberMe != null && rememberMe.equals("yes")) {
+            return "redirect:admin";
         } else {
             return "login";
         }
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("admin")
+    public String getAdmin(
+            @CookieValue(value = "uid", required = false) String uid,
+            @CookieValue(value = "access-token", required = false) String token
+    ) {
+        if (userService.doCheckToken(token, uid)) {
+            return "admin";
+        } else {
+            return "redirect:login";
+        }
+    }
+
+    @RequestMapping(value = "doLogin",method = RequestMethod.POST)
     public String login(
             @RequestParam String phone_num,
             @RequestParam String password,
-            @RequestParam String rememberMe,
-            HttpServletResponse httpServletResponse
+            @RequestParam(required = false) String rememberMe,
+            HttpServletResponse httpServletResponse,
+            HttpServletRequest httpServletRequest
     ) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         Users users;
         try {
@@ -63,16 +74,23 @@ public class WebController {
         if (users != null) {
             Cookie uid = new Cookie("uid", users.getId().toString());
             Cookie accessToken = new Cookie("access-token", users.getAccessToken());
-            httpServletResponse.addCookie(uid);
-            httpServletResponse.addCookie(accessToken);
-
-            //选择了记住我则设置一个7天过期的cookie
-            if (rememberMe.equals("yes")) {
-                Cookie rememberMeCookie = new Cookie("remember-me", "yes");
+            Cookie rememberMeCookie;
+            if (rememberMe != null && rememberMe.equals("yes")) {
+                //选择了记住我则设置一个7天过期的cookie
+                rememberMeCookie = new Cookie("remember-me", "yes");
+                uid.setMaxAge(ConstantValues.ONE_DAY_TIMESTAMP * 7);
+                accessToken.setMaxAge(ConstantValues.ONE_DAY_TIMESTAMP * 7);
                 rememberMeCookie.setMaxAge(ConstantValues.ONE_DAY_TIMESTAMP * 7);
                 httpServletResponse.addCookie(rememberMeCookie);
+            } else {
+                //为选择记住我，则设置一个立马过期的cookie，即删除cookie
+                rememberMeCookie = new Cookie("remember-me", null);
+                rememberMeCookie.setMaxAge(0);
+                httpServletResponse.addCookie(rememberMeCookie);
             }
-            return "admin";
+            httpServletResponse.addCookie(uid);
+            httpServletResponse.addCookie(accessToken);
+            return "redirect:admin";
         } else {
             return "login";
         }

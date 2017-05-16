@@ -53,7 +53,7 @@
 
 
     <welcome-file-list>
-        <welcome-file>/WEB-INF/view/index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/view/login.html</welcome-file>
     </welcome-file-list>
 
      <!--激活Tomcat的defaultServlet来处理静态文件 -->
