@@ -1,0 +1,52 @@
+<div ng-controller="fbgg" class="col-xs-8 center-block">
+    <div class="callout callout-info">
+        <h4>提示</h4>
+
+        <p>在这里可以发表公告</p>
+    </div>
+    <div>
+        <div class="box box-primary col-xs-8" ng-controller="fbgg">
+            <div class="box-header ">
+                <h3 class="box-title with-border">发布公告</h3>
+            </div>
+            <form class="ggfb">
+                <div class="box-body">
+                    <!-- Date -->
+                    <div class="form-group">
+                        <label for="datepicker">置顶时间时间</label>
+
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="date" class="form-control pull-right" id="datepicker">
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                    <!-- /.form group -->
+                    <div class="form-group">
+                        <label>主题</label>
+
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-steam"></i>
+                            </div>
+                            <input type="text" class="form-control pull-right">
+                        </div>
+
+                        <!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                        <label>内容</label>
+                        <textarea class="form-control" rows="3" placeholder="请输入公告内容"></textarea>
+                    </div>
+                    <div class="box-footer">
+                        <button class="btn btn-primary btn-lg submitBtn">提交</button>
+                    </div>
+                </div>
+            </form>
+            <!-- /.box-body -->
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="col-xs-8 center-block" ng-controller="pushScore">
+    <div class="callout callout-info">
+        <h4>提示</h4>
+
+        <p>在这里可以发布成绩，由于成绩的发布条目过多，系统只提供上传模板文件的推送渠道</p>
+    </div>
+    <div>
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    模板文件方式添加用户
+                </h3>
+            </div>
+            <form>
+                <div class="box-body">
+                    <div class="form-group">
+                        <button class="btn btn-primary"><a href="http://opdj8pjcp.bkt.clouddn.com/student-score.xlsx" style="color: inherit">点击此按钮下载学生成绩模板</a></button>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="inputFile">上传文件</label>
+                        <input type="file" id="inputFile">
+                        <p class="help-block">点击这里选择你要上传的Excel模板文件，请务必做好数据验证</p>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary btn-lg submitBtn">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
