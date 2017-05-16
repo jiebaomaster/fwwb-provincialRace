@@ -61,8 +61,7 @@ public class WebController {
             @RequestParam String phone_num,
             @RequestParam String password,
             @RequestParam(required = false) String rememberMe,
-            HttpServletResponse httpServletResponse,
-            HttpServletRequest httpServletRequest
+            HttpServletResponse httpServletResponse
     ) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         Users users;
         try {
