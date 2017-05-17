@@ -5,8 +5,8 @@ angular.module('admin', ['ngRoute','user'])
     .config(function ($routeProvider, $locationProvider) {
         $locationProvider.hashPrefix('');
 
-        $routeProvider.when("/parent", {
-            templateUrl: "../../html/parentTable.html"
+        $routeProvider.when("/userAdmin", {
+            templateUrl: "./template/userTable.html"
         });
         $routeProvider.when("/deleteOrSelect", {
             templateUrl: "../../html/teacherTable.html"

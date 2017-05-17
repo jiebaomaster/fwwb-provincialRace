@@ -3,14 +3,12 @@
  */
 angular.module("admin")
     .controller("userCtrl", function ($scope, userService) {
-
-        $scope.parentWithChild = function () {
-            userService.classUserInfoWithChildInit();
-        };
-
-        $scope.teachers = function () {
-            userService.classUserInfoTeacherInit();
-        };
+        userService.userInfoInit();
+        userService.classUserInfoWithChildInit();
+        userService.classUserInfoTeacherInit();
+        $scope.userInfo = userService.getUserInfo();
+        $scope.classUserInfoWithChild = userService.getClassUserInfoWithChild();
+        $scope.classTeacher = userService.getClassTeacher();
 
         $scope.addParent = function () {
             userService.addParent(parentInfo);
@@ -20,7 +18,7 @@ angular.module("admin")
             userService.addTeacher(teacherInfo);
         };
 
-        $scope.deleteUser=function (userNo) {
+        $scope.deleteUser = function (userNo) {
             userService.deleteUser(userNo);
         }
     });

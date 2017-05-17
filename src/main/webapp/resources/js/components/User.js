@@ -34,6 +34,22 @@ angular.module("user", ['ngCookies'])
             };
 
         return {
+            getUserInfo: function () {
+                return userInfo;
+            },
+
+            getClassUserInfo: function () {
+                return classUserInfo;
+            },
+
+            getClassUserInfoWithChild: function () {
+                return classUserInfoWithChild;
+            },
+
+            getClassTeacher: function () {
+                return classTeacher;
+            },
+
             userInfoInit: function () {
                 $http.get(userInfoUrl, httpGetSetting)
                     .then(function (response) {
@@ -91,5 +107,14 @@ angular.module("user", ['ngCookies'])
                     })
             }
 
+        }
+    })
+    .directive("userPanel", function (userService) {
+        return {
+            restrict: "E",
+            templateUrl: "./template/userPanel.html",
+            controller: function ($scope) {
+                $scope.userInfo = userService.userInfoInit();
+            }
         }
     });

@@ -3,6 +3,6 @@
  */
 angular.module("admin")
     .controller('indexCtrl', function ($scope, userService) {
-        $scope.data = {};
-        $scope.userInfo = userService.userInfoInit();
+        userService.userInfoInit();
+        $scope.userInfo = userService.getUserInfo();
     });
