@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../resources/js/lib/jquery-1.9.1.min.js"></script>
+    <script>
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://localhost:8000/user/show",
+            "method": "GET",
+            "headers": {
+                "uid": "2",
+                "access_token": "866YFka9PJ5iGZGKRU4CWg==",
+                "cache-control": "no-cache",
+                "postman-token": "076805e1-2dac-f242-91ec-4ac58cc31f3b"
+            }
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+    </script>
+</head>
+<body>
+<p>success!!</p>
+<p>sadas</p>
+</body>
+</html>

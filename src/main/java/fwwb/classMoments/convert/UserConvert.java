@@ -4,6 +4,7 @@ import fwwb.classMoments.DTO.TeacherUserDTO;
 import fwwb.classMoments.DTO.UserDTO;
 import fwwb.classMoments.DTO.UserWithChildDTO;
 import fwwb.classMoments.model.Users;
+import fwwb.classMoments.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserConvert {
+    @Autowired
+    private UserService userService;
 
     public UserDTO userEntity2UserDTO(Users users) {
         return new UserDTO(
