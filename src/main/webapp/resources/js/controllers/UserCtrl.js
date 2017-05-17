@@ -2,7 +2,25 @@
  * Created by hongcj on 2017/5/17.
  */
 angular.module("admin")
-    .constant('classUserInfoUrl', "/user/show")
-    .controller("userCtrl",function ($scope,$http,$cookieStore) {
-        
-    })
+    .controller("userCtrl", function ($scope, userService) {
+
+        $scope.parentWithChild = function () {
+            userService.classUserInfoWithChildInit();
+        };
+
+        $scope.teachers = function () {
+            userService.classUserInfoTeacherInit();
+        };
+
+        $scope.addParent = function () {
+            userService.addParent(parentInfo);
+        };
+
+        $scope.addTeacher = function () {
+            userService.addTeacher(teacherInfo);
+        };
+
+        $scope.deleteUser=function (userNo) {
+            userService.deleteUser(userNo);
+        }
+    });

@@ -1,7 +1,7 @@
 /**
  * Created by hongcj on 2017/5/16.
  */
-angular.module('admin', ['ngRoute','ngCookies'])
+angular.module('admin', ['ngRoute','user'])
     .config(function ($routeProvider, $locationProvider) {
         $locationProvider.hashPrefix('');
 
