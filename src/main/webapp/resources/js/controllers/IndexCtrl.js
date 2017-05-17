@@ -2,13 +2,11 @@
  * Created by hongcj on 2017/4/19.
  */
 angular.module("admin")
-    .constant('classUserInfoUrl', "/user/show")
-    .controller('indexCtrl', function ($scope, $http, $cookieStore, classUserInfoUrl) {
-
-
+    .constant('userInfoUrl', "/user/show")
+    .controller('indexCtrl', function ($scope, $http, $cookieStore, userInfoUrl) {
         $scope.data = {};
 
-        $http.get(classUserInfoUrl,
+        $http.get(userInfoUrl,
             {
                 "async": true,
                 "method": "GET",
@@ -18,9 +16,8 @@ angular.module("admin")
                 }
             })
             .then(function (response) {
-                console.log(response);
                 $scope.data.userInfo = response.data.body;
             }, function (error) {
-                console.log(error);
+                $scope.data.userInfoRequestError = error;
             })
     });

@@ -1,7 +1,10 @@
 package fwwb.classMoments.convert;
 
+import fwwb.classMoments.DTO.TeacherUserDTO;
 import fwwb.classMoments.DTO.UserDTO;
+import fwwb.classMoments.DTO.UserWithChildDTO;
 import fwwb.classMoments.model.Users;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserConvert {
+
     public UserDTO userEntity2UserDTO(Users users) {
         return new UserDTO(
                 users.getId(),
@@ -34,5 +38,13 @@ public class UserConvert {
                 userDTO.getBackground_url(),
                 userDTO.getHave_red_flower()
         );
+    }
+
+    public UserWithChildDTO userEntity2UserWithChildDTO(Users users) {
+        return new UserWithChildDTO();
+    }
+
+    public TeacherUserDTO userEntity2TeacherUserDTO(Users users) {
+        return new TeacherUserDTO();
     }
 }

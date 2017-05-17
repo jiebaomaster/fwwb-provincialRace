@@ -1,8 +1,6 @@
 package fwwb.classMoments.controllers;
 
-import fwwb.classMoments.DTO.ReturnDTO;
-import fwwb.classMoments.DTO.UserDTO;
-import fwwb.classMoments.DTO.UserLoginDTO;
+import fwwb.classMoments.DTO.*;
 import fwwb.classMoments.convert.UserConvert;
 import fwwb.classMoments.model.Users;
 import fwwb.classMoments.services.UserService;
@@ -200,11 +198,11 @@ public class UserController {
     public ReturnDTO getMyClass(
             HttpServletRequest httpServletRequest
     ) {
+        int uid = Integer.parseInt(httpServletRequest.getHeader("uid"));
         List<Users> usersList;
         List<UserDTO> userDTOS;
         try {
-            usersList = userService.doGetMembersByUid(Integer.parseInt(httpServletRequest.getHeader("uid")));
-
+            usersList = userService.doGetMembersByUid(uid);
         } catch (Exception e) {
             return new ReturnDTO("members_show", "error", e.getMessage());
         }
@@ -215,5 +213,49 @@ public class UserController {
                 .collect(Collectors.toList());
 
         return new ReturnDTO("members_show", "success", userDTOS);
+    }
+
+    @RequestMapping(value = "classUserInfoWithChild", method = RequestMethod.GET)
+    @ResponseBody
+    public ReturnDTO getMyClassWithChild(
+            HttpServletRequest httpServletRequest
+    ) {
+        int uid = Integer.parseInt(httpServletRequest.getHeader("uid"));
+        List<Users> usersList;
+        List<UserWithChildDTO> userWithChildDTOS;
+        try {
+            usersList = userService.doGetMembersByUid(uid);
+        } catch (Exception e) {
+            return new ReturnDTO("members_child_show", "error", e.getMessage());
+        }
+
+        userWithChildDTOS = usersList
+                .stream()
+                .filter(users -> users.getUsersType().equals("PARENT"))
+                .map(users -> userConvert.userEntity2UserWithChildDTO(users))
+                .collect(Collectors.toList());
+        return new ReturnDTO("members_child_show", "success", userWithChildDTOS);
+    }
+
+    @RequestMapping(value = "classTeacher", method = RequestMethod.GET)
+    @ResponseBody
+    public ReturnDTO getClassTeacher(
+            HttpServletRequest httpServletRequest
+    ) {
+        int uid = Integer.parseInt(httpServletRequest.getHeader("uid"));
+        List<Users> usersList;
+        List<TeacherUserDTO> teacherUserDTOS;
+        try {
+            usersList = userService.doGetMembersByUid(uid);
+        } catch (Exception e) {
+            return new ReturnDTO("members_teacher_show", "error", e.getMessage());
+        }
+
+        teacherUserDTOS = usersList
+                .stream()
+                .filter(users -> users.getUsersType().equals("PARENT"))
+                .map(users -> userConvert.userEntity2TeacherUserDTO(users))
+                .collect(Collectors.toList());
+        return new ReturnDTO("members_teacher_show", "success", teacherUserDTOS);
     }
 }
