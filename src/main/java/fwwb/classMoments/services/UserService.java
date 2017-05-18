@@ -1,6 +1,8 @@
 package fwwb.classMoments.services;
 
+import fwwb.classMoments.DTO.TeacherUserDTO;
 import fwwb.classMoments.DTO.UserDTO;
+import fwwb.classMoments.DTO.UserWithChildDTO;
 import fwwb.classMoments.model.Users;
 
 import java.io.UnsupportedEncodingException;
@@ -38,4 +40,8 @@ public interface UserService {
     UserDTO doGetUserDTOByUid(int uid);
 
     List<Users> doGetMembersByUid(int uid);
+
+    List<UserWithChildDTO> doGetMembersWithChildDTOByUid(int uid);
+
+    List<TeacherUserDTO> doGetTeacherUserDTOByUid(int uid);
 }

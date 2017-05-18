@@ -106,15 +106,34 @@ angular.module("user", ['ngCookies'])
                         console.log(error);
                     })
             }
-
-        }
+        };
     })
-    .directive("userPanel", function (userService) {
+    .directive("userTable", function () {
         return {
             restrict: "E",
-            templateUrl: "./template/userPanel.html",
-            controller: function ($scope) {
-                $scope.userInfo = userService.userInfoInit();
-            }
-        }
+            templateUrl: function (element, attrs) {
+                var tableName = attrs["table"] === "parentWithChildTable" ?
+                    "parentWithChildTable" : "teacherTable";
+                return './template' + tableName + '.html';
+            },
+            link: function (scope, element, attrs) {
+                var selectUserArr=[];
+
+                //根据有无小红花字段动态添加样式
+                scope.redFlowerTransform = function (haveRedFlower) {
+                    var i = $(element).find('i');
+                    haveRedFlower ? i.addClass('fa-star') : i.addClass('fa-star-o');
+                };
+
+                //
+                scope.userDelete = function () {
+                    userService.deleteUser(selectUserArr);
+                };
+
+                scope.update=function () {
+
+                }
+            },
+            scope: true
+        };
     });

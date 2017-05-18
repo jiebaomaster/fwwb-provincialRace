@@ -14,9 +14,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserConvert {
-    @Autowired
-    private UserService userService;
-
     public UserDTO userEntity2UserDTO(Users users) {
         return new UserDTO(
                 users.getId(),
@@ -41,13 +38,5 @@ public class UserConvert {
                 userDTO.getBackground_url(),
                 userDTO.getHave_red_flower()
         );
-    }
-
-    public UserWithChildDTO userEntity2UserWithChildDTO(Users users) {
-        return new UserWithChildDTO();
-    }
-
-    public TeacherUserDTO userEntity2TeacherUserDTO(Users users) {
-        return new TeacherUserDTO();
     }
 }

@@ -1,6 +1,8 @@
 package fwwb.classMoments.DAO;
 
+import fwwb.classMoments.DTO.TeacherUserDTO;
 import fwwb.classMoments.DTO.UserDTO;
+import fwwb.classMoments.DTO.UserWithChildDTO;
 import fwwb.classMoments.model.Users;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -142,4 +144,43 @@ public interface UsersMapper {
             @Result(column="have_red_flower", property="have_red_flower", jdbcType=JdbcType.BIT)
     })
     UserDTO selectUserDTOByPrimaryKey(Integer id);
+
+    @Select({
+            "select",
+            "u.id, u.phone, u.users_name, u.avatar_url, name",
+            "background_url, have_red_flower",
+            "from users u,students s",
+            "where u.class_id = #{class_id,jdbcType=INTEGER} and s.parent_id=u.id"
+    })
+    @Results({
+            @Result(column="id", property="uid", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="phone", property="user_mobile", jdbcType=JdbcType.VARCHAR),
+            @Result(column="users_name", property="user_name", jdbcType=JdbcType.VARCHAR),
+            @Result(column="users_type", property="user_type", jdbcType=JdbcType.CHAR),
+            @Result(column="class_id", property="class_id", jdbcType=JdbcType.INTEGER),
+            @Result(column="avatar_url", property="avatar_url", jdbcType=JdbcType.VARCHAR),
+            @Result(column="background_url", property="background_url", jdbcType=JdbcType.VARCHAR),
+            @Result(column="have_red_flower", property="have_red_flower", jdbcType=JdbcType.BIT)
+    })
+    List<UserWithChildDTO> selectUserWithChildDTOByClassId(Users users);
+
+
+    @Select({
+            "select",
+            "u.id, u.phone, u.users_name, u.avatar_url, name",
+            "background_url, have_red_flower",
+            "from users u,teachers t",
+            "where u.class_id = #{class_id,jdbcType=INTEGER} and t.user_id=u.id"
+    })
+    @Results({
+            @Result(column="id", property="uid", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="phone", property="user_mobile", jdbcType=JdbcType.VARCHAR),
+            @Result(column="users_name", property="user_name", jdbcType=JdbcType.VARCHAR),
+            @Result(column="users_type", property="user_type", jdbcType=JdbcType.CHAR),
+            @Result(column="class_id", property="class_id", jdbcType=JdbcType.INTEGER),
+            @Result(column="avatar_url", property="avatar_url", jdbcType=JdbcType.VARCHAR),
+            @Result(column="background_url", property="background_url", jdbcType=JdbcType.VARCHAR),
+            @Result(column="have_red_flower", property="have_red_flower", jdbcType=JdbcType.BIT)
+    })
+    List<TeacherUserDTO> selectTeacherUserDTOByClassId(Users users);
 }

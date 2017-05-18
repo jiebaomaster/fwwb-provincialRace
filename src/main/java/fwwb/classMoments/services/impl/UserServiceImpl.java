@@ -1,7 +1,9 @@
 package fwwb.classMoments.services.impl;
 
 import fwwb.classMoments.DAO.UsersMapper;
+import fwwb.classMoments.DTO.TeacherUserDTO;
 import fwwb.classMoments.DTO.UserDTO;
+import fwwb.classMoments.DTO.UserWithChildDTO;
 import fwwb.classMoments.convert.UserConvert;
 import fwwb.classMoments.model.Users;
 import fwwb.classMoments.services.UserService;
@@ -119,5 +121,19 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .filter(test_users -> !users.getId().equals(test_users.getId()))
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    @Override
+    public List<UserWithChildDTO> doGetMembersWithChildDTOByUid(int uid) {
+        Users users=usersMapper.selectByPrimaryKey(uid);
+        return usersMapper.selectUserWithChildDTOByClassId(users);
+    }
+
+    @Transactional
+    @Override
+    public List<TeacherUserDTO> doGetTeacherUserDTOByUid(int uid) {
+        Users users=usersMapper.selectByPrimaryKey(uid);
+        return usersMapper.selectTeacherUserDTOByClassId(users);
     }
 }

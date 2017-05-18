@@ -1,12 +1,12 @@
 /**
  * Created by hongcj on 2017/5/16.
  */
-angular.module('admin', ['ngRoute','user'])
+angular.module('adminApp', ['ngRoute','user'])
     .config(function ($routeProvider, $locationProvider) {
         $locationProvider.hashPrefix('');
 
         $routeProvider.when("/userAdmin", {
-            templateUrl: "./template/userTable.html"
+            templateUrl: "./template/parentWithChildTable.html"
         });
         $routeProvider.when("/deleteOrSelect", {
             templateUrl: "../../html/teacherTable.html"

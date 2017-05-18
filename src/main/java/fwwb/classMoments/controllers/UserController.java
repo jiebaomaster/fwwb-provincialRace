@@ -221,19 +221,13 @@ public class UserController {
             HttpServletRequest httpServletRequest
     ) {
         int uid = Integer.parseInt(httpServletRequest.getHeader("uid"));
-        List<Users> usersList;
         List<UserWithChildDTO> userWithChildDTOS;
         try {
-            usersList = userService.doGetMembersByUid(uid);
+            userWithChildDTOS = userService.doGetMembersWithChildDTOByUid(uid);
         } catch (Exception e) {
             return new ReturnDTO("members_child_show", "error", e.getMessage());
         }
 
-        userWithChildDTOS = usersList
-                .stream()
-                .filter(users -> users.getUsersType().equals("PARENT"))
-                .map(users -> userConvert.userEntity2UserWithChildDTO(users))
-                .collect(Collectors.toList());
         return new ReturnDTO("members_child_show", "success", userWithChildDTOS);
     }
 
@@ -243,19 +237,13 @@ public class UserController {
             HttpServletRequest httpServletRequest
     ) {
         int uid = Integer.parseInt(httpServletRequest.getHeader("uid"));
-        List<Users> usersList;
         List<TeacherUserDTO> teacherUserDTOS;
         try {
-            usersList = userService.doGetMembersByUid(uid);
+            teacherUserDTOS = userService.doGetTeacherUserDTOByUid(uid);
         } catch (Exception e) {
             return new ReturnDTO("members_teacher_show", "error", e.getMessage());
         }
 
-        teacherUserDTOS = usersList
-                .stream()
-                .filter(users -> users.getUsersType().equals("PARENT"))
-                .map(users -> userConvert.userEntity2TeacherUserDTO(users))
-                .collect(Collectors.toList());
         return new ReturnDTO("members_teacher_show", "success", teacherUserDTOS);
     }
 }
