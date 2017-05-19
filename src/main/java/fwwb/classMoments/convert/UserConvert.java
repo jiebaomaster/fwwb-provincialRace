@@ -1,11 +1,8 @@
 package fwwb.classMoments.convert;
 
-import fwwb.classMoments.DTO.TeacherUserDTO;
 import fwwb.classMoments.DTO.UserDTO;
 import fwwb.classMoments.DTO.UserWithChildDTO;
 import fwwb.classMoments.model.Users;
-import fwwb.classMoments.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,7 +20,8 @@ public class UserConvert {
                 users.getClassId(),
                 users.getAvatarUrl(),
                 users.getBackgroundUrl(),
-                users.getHaveRedFlower()
+                users.getHaveRedFlower(),
+                users.getSex()
         );
     }
 
@@ -36,7 +34,15 @@ public class UserConvert {
                 userDTO.getClass_id(),
                 userDTO.getAvatar_url(),
                 userDTO.getBackground_url(),
-                userDTO.getHave_red_flower()
+                userDTO.getHave_red_flower(),
+                userDTO.getSex()
         );
     }
+
+    public Users userWithChildDTO2UsersEntity(UserWithChildDTO userWithChildDTO){
+        return new Users(
+
+        );
+    }
+
 }

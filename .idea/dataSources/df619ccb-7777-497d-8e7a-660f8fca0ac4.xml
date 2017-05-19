@@ -457,6 +457,7 @@
     <column id="116" parent="18" name="school_id">
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
     <index id="117" parent="18" name="class_id">
       <ColNames>class_id</ColNames>
@@ -550,6 +551,7 @@
       <Position>3</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;666666&apos;</DefaultExpression>
     </column>
     <column id="137" parent="20" name="users_name">
       <Position>4</Position>
@@ -582,58 +584,63 @@
       <DataType>tinyint(1)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <index id="144" parent="20" name="class_id">
+    <column id="144" parent="20" name="sex">
+      <Position>11</Position>
+      <DataType>enum(&apos;MAN&apos;, &apos;WOMAN&apos;)|0</DataType>
+      <DefaultExpression>&apos;MAN&apos;</DefaultExpression>
+    </column>
+    <index id="145" parent="20" name="class_id">
       <ColNames>class_id</ColNames>
     </index>
-    <index id="145" parent="20" name="phone">
+    <index id="146" parent="20" name="phone">
       <ColNames>phone</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="146" parent="20" name="PRIMARY">
+    <key id="147" parent="20" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="147" parent="20" name="phone">
+    <key id="148" parent="20" name="phone">
       <ColNames>phone</ColNames>
       <UnderlyingIndexName>phone</UnderlyingIndexName>
     </key>
-    <foreign-key id="148" parent="20" name="users_ibfk_1">
+    <foreign-key id="149" parent="20" name="users_ibfk_1">
       <ColNames>class_id</ColNames>
       <RefSchemaName>mybatis</RefSchemaName>
       <RefTableName>class</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="149" parent="21" name="id">
+    <column id="150" parent="21" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="150" parent="21" name="users_id">
+    <column id="151" parent="21" name="users_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="151" parent="21" name="activity_id">
+    <column id="152" parent="21" name="activity_id">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="152" parent="21" name="activity_id">
+    <index id="153" parent="21" name="activity_id">
       <ColNames>activity_id</ColNames>
     </index>
-    <index id="153" parent="21" name="users_id">
+    <index id="154" parent="21" name="users_id">
       <ColNames>users_id</ColNames>
     </index>
-    <key id="154" parent="21" name="PRIMARY">
+    <key id="155" parent="21" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="155" parent="21" name="users_activity_ibfk_1">
+    <foreign-key id="156" parent="21" name="users_activity_ibfk_1">
       <ColNames>users_id</ColNames>
       <RefSchemaName>mybatis</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="156" parent="21" name="users_activity_ibfk_2">
+    <foreign-key id="157" parent="21" name="users_activity_ibfk_2">
       <ColNames>activity_id</ColNames>
       <RefSchemaName>mybatis</RefSchemaName>
       <RefTableName>activities</RefTableName>

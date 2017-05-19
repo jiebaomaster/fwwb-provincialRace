@@ -21,10 +21,12 @@ public class UserDTO {
 
     private Boolean have_red_flower;
 
+    private String sex;
+
     public UserDTO() {
     }
 
-    public UserDTO(Integer uid, String user_mobile, String user_name, String user_type, int class_id, String avatar_url, String background_url, Boolean have_red_flower) {
+    public UserDTO(Integer uid, String user_mobile, String user_name, String user_type, int class_id, String avatar_url, String background_url, Boolean have_red_flower, String sex) {
         this.uid = uid;
         this.user_mobile = user_mobile;
         this.user_name = user_name;
@@ -33,6 +35,7 @@ public class UserDTO {
         this.avatar_url = avatar_url;
         this.background_url = background_url;
         this.have_red_flower = have_red_flower;
+        this.sex = sex;
     }
 
     public Integer getUid() {
@@ -97,5 +100,13 @@ public class UserDTO {
 
     public void setHave_red_flower(Boolean have_red_flower) {
         this.have_red_flower = have_red_flower;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }

@@ -12,13 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by hongcj on 2017/4/28.
  */
+
 public class CheckTokenInterceptor implements HandlerInterceptor {
+    //定义不拦截的路由
     private static final String[] IGNORE_URI = {
             "/user/login.html",
             "/app","user/passwd_reset",
-            "/webapp/form/login.html",
-            "/webapp/testAjax",
-            "/webapp/admin"
+            "/webapp/user/admin",
+            "/webapp/user/login"
     };
 
     @Autowired

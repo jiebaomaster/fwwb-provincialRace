@@ -4,11 +4,13 @@ package fwwb.classMoments.DTO;
  * Created by hongcj on 2017/5/17.
  */
 public class TeacherUserDTO {
-    private Integer uid;
+    private Integer id;
 
     private String user_mobile;
 
     private String user_name;
+
+    private String sex;
 
     private int class_id;
 
@@ -20,13 +22,12 @@ public class TeacherUserDTO {
 
     private String teacher_type;
 
-
-    public Integer getUid() {
-        return uid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUser_mobile() {
@@ -43,6 +44,14 @@ public class TeacherUserDTO {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public int getClass_id() {

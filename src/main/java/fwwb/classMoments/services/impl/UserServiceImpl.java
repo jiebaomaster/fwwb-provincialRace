@@ -1,5 +1,7 @@
 package fwwb.classMoments.services.impl;
 
+import fwwb.classMoments.DAO.StudentsMapper;
+import fwwb.classMoments.DAO.TeachersMapper;
 import fwwb.classMoments.DAO.UsersMapper;
 import fwwb.classMoments.DTO.TeacherUserDTO;
 import fwwb.classMoments.DTO.UserDTO;
@@ -27,6 +29,12 @@ public class UserServiceImpl implements UserService {
     private UsersMapper usersMapper;
 
     @Autowired
+    private StudentsMapper studentsMapper;
+
+    @Autowired
+    private TeachersMapper teachersMapper;
+
+    @Autowired
     private UserConvert userConvert;
 
     @Transactional
@@ -40,9 +48,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public Users doLogin(
-            String phoneNum,
-            String password
+    public Users doLogin(String phoneNum, String password
     ) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         Users users = usersMapper.selectByPhone(phoneNum);
         if (users != null && users.getPasswd().equals(password)) {
@@ -126,14 +132,28 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public List<UserWithChildDTO> doGetMembersWithChildDTOByUid(int uid) {
-        Users users=usersMapper.selectByPrimaryKey(uid);
+        Users users = usersMapper.selectByPrimaryKey(uid);
         return usersMapper.selectUserWithChildDTOByClassId(users);
     }
 
     @Transactional
     @Override
     public List<TeacherUserDTO> doGetTeacherUserDTOByUid(int uid) {
-        Users users=usersMapper.selectByPrimaryKey(uid);
+        Users users = usersMapper.selectByPrimaryKey(uid);
         return usersMapper.selectTeacherUserDTOByClassId(users);
+    }
+
+    @Transactional
+    @Override
+    public void registerParentStudentAll(List<UserWithChildDTO> list) {
+        usersMapper.insertParentBatch(list);
+        studentsMapper.insertStudentBatch(list);
+    }
+
+    @Transactional
+    @Override
+    public void registerTeacherAll(List<TeacherUserDTO> list) {
+        usersMapper.insertTeacherUserBatch(list);
+        teachersMapper.insertTeacherBatch(list);
     }
 }

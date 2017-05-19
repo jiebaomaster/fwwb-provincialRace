@@ -21,10 +21,12 @@ public class Users {
 
     private Boolean haveRedFlower;
 
+    private String sex;
+
     public Users() {
     }
 
-    public Users(Integer id, String phone, String usersName, String usersType, Integer classId, String avatarUrl, String backgroundUrl, Boolean haveRedFlower) {
+    public Users(Integer id, String phone, String usersName, String usersType, Integer classId, String avatarUrl, String backgroundUrl, Boolean haveRedFlower, String sex) {
         this.id = id;
         this.phone = phone;
         this.usersName = usersName;
@@ -33,6 +35,7 @@ public class Users {
         this.avatarUrl = avatarUrl;
         this.backgroundUrl = backgroundUrl;
         this.haveRedFlower = haveRedFlower;
+        this.sex = sex;
     }
 
     public Integer getId() {
@@ -113,5 +116,13 @@ public class Users {
 
     public void setHaveRedFlower(Boolean haveRedFlower) {
         this.haveRedFlower = haveRedFlower;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
     }
 }

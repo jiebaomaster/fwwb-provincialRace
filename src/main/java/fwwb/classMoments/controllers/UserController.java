@@ -214,36 +214,4 @@ public class UserController {
 
         return new ReturnDTO("members_show", "success", userDTOS);
     }
-
-    @RequestMapping(value = "classUserInfoWithChild", method = RequestMethod.GET)
-    @ResponseBody
-    public ReturnDTO getMyClassWithChild(
-            HttpServletRequest httpServletRequest
-    ) {
-        int uid = Integer.parseInt(httpServletRequest.getHeader("uid"));
-        List<UserWithChildDTO> userWithChildDTOS;
-        try {
-            userWithChildDTOS = userService.doGetMembersWithChildDTOByUid(uid);
-        } catch (Exception e) {
-            return new ReturnDTO("members_child_show", "error", e.getMessage());
-        }
-
-        return new ReturnDTO("members_child_show", "success", userWithChildDTOS);
-    }
-
-    @RequestMapping(value = "classTeacher", method = RequestMethod.GET)
-    @ResponseBody
-    public ReturnDTO getClassTeacher(
-            HttpServletRequest httpServletRequest
-    ) {
-        int uid = Integer.parseInt(httpServletRequest.getHeader("uid"));
-        List<TeacherUserDTO> teacherUserDTOS;
-        try {
-            teacherUserDTOS = userService.doGetTeacherUserDTOByUid(uid);
-        } catch (Exception e) {
-            return new ReturnDTO("members_teacher_show", "error", e.getMessage());
-        }
-
-        return new ReturnDTO("members_teacher_show", "success", teacherUserDTOS);
-    }
 }

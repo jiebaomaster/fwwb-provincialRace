@@ -44,4 +44,8 @@ public interface UserService {
     List<UserWithChildDTO> doGetMembersWithChildDTOByUid(int uid);
 
     List<TeacherUserDTO> doGetTeacherUserDTOByUid(int uid);
+
+    void registerParentStudentAll(List<UserWithChildDTO> userWithChildDTOList);
+
+    void registerTeacherAll(List<TeacherUserDTO> teacherUserDTOList);
 }

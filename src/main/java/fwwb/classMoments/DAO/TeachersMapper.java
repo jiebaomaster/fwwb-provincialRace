@@ -1,17 +1,12 @@
 package fwwb.classMoments.DAO;
 
+import fwwb.classMoments.DTO.TeacherUserDTO;
 import fwwb.classMoments.model.Teachers;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
-import org.apache.ibatis.annotations.Update;
-import org.apache.ibatis.annotations.UpdateProvider;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface TeachersMapper {
@@ -63,4 +58,16 @@ public interface TeachersMapper {
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Teachers record);
+
+    @Insert({
+            "<script>",
+            "insert into teachers (teacher_num, teacher_type, user_id, class_id)",
+            "values ",
+            "<foreach  collection='list' item='item' separator=','>",
+            "(#{item.teacher_no,jdbcType=INTEGER},#{item.teacher_type,jdbcType=VARCHAR},#{item.id,jdbcType=INTEGER},#{item.class_id,jdbcType=INTEGER})",
+            "</foreach>",
+            "</script>"
+    })
+    @Options(useGeneratedKeys = true)
+    int insertTeacherBatch(List<TeacherUserDTO> list);
 }

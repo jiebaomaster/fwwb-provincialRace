@@ -1,5 +1,6 @@
 package fwwb.classMoments.DAO;
 
+import fwwb.classMoments.DTO.UserWithChildDTO;
 import fwwb.classMoments.model.Users;
 import org.apache.ibatis.jdbc.SQL;
 
@@ -47,6 +48,10 @@ public class UsersSqlProvider {
             sql.VALUES("have_red_flower", "#{haveRedFlower,jdbcType=BIT}");
         }
         
+        if (record.getSex() != null) {
+            sql.VALUES("sex", "#{sex,jdbcType=CHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -88,6 +93,10 @@ public class UsersSqlProvider {
         
         if (record.getHaveRedFlower() != null) {
             sql.SET("have_red_flower = #{haveRedFlower,jdbcType=BIT}");
+        }
+        
+        if (record.getSex() != null) {
+            sql.SET("sex = #{sex,jdbcType=CHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");
