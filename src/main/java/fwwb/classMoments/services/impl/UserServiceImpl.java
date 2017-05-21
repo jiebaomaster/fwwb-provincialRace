@@ -156,4 +156,9 @@ public class UserServiceImpl implements UserService {
         usersMapper.insertTeacherUserBatch(list);
         teachersMapper.insertTeacherBatch(list);
     }
+
+    @Override
+    public UserDTO userDeleteByUid(int uid) {
+        return null;
+    }
 }

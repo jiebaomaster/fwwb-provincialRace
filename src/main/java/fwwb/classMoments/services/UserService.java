@@ -48,4 +48,6 @@ public interface UserService {
     void registerParentStudentAll(List<UserWithChildDTO> userWithChildDTOList);
 
     void registerTeacherAll(List<TeacherUserDTO> teacherUserDTOList);
+
+    UserDTO userDeleteByUid(int uid);
 }

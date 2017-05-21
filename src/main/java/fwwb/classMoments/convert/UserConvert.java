@@ -38,11 +38,4 @@ public class UserConvert {
                 userDTO.getSex()
         );
     }
-
-    public Users userWithChildDTO2UsersEntity(UserWithChildDTO userWithChildDTO){
-        return new Users(
-
-        );
-    }
-
 }

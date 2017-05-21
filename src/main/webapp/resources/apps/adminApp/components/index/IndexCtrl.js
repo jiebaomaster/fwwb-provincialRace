@@ -1,8 +1,7 @@
 /**
  * Created by hongcj on 2017/4/19.
  */
-angular.module("admin")
-    .controller('indexCtrl', function (userService) {
-        userService.userInfoInit();
+angular.module("adminApp")
+    .controller('IndexCtrl', function (userService) {
         this.userInfo = userService.getUserInfo();
     });

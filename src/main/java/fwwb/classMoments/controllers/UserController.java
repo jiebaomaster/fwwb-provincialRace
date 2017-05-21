@@ -39,7 +39,7 @@ public class UserController {
      * @throws NoSuchAlgorithmException     md5
      * @throws UnsupportedEncodingException md5
      */
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "login", method = RequestMethod.POST)
     @ResponseBody
     public ReturnDTO login(
             @RequestBody UserLoginDTO userLoginDTO

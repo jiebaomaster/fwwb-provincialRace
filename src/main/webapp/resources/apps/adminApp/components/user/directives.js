@@ -4,7 +4,7 @@
 /**
  * 用户模块
  */
-angular.module("user", ['ngCookies'])
+angular.module("user")
     .directive("userTable", function () {
         return {
             restrict: "E",
