@@ -4,14 +4,14 @@
 /**
  * 用户模块
  */
-angular.module("user")
+angular.module("userModule")
     .directive("userTable", function () {
         return {
             restrict: "E",
             templateUrl: function (element, attrs) {
                 var tableName = attrs["table"] === "parentWithChildTable" ?
                     "parentWithChildTable" : "teacherTable";
-                return './template' + tableName + '.html';
+                return './' + tableName + '.html';
             },
             link: function (scope, element, attrs) {
                 var selectUserArr=[];

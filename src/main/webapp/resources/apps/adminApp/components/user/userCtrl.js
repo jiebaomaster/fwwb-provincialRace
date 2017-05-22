@@ -1,13 +1,15 @@
 /**
  * Created by hongcj on 2017/5/17.
  */
-angular.module("adminApp")
-    .controller("userCtrl", function (userService) {
+angular.module("userModule")
+    .controller("UserBase",function (userService) {
+        this.userInfo=userService.getUserInfo();
+    })
+    .controller("UserTable", function (userService) {
         // userService.userInfoInit();
         // userService.classUserInfoWithChildInit();
         // userService.classUserInfoTeacherInit();
 
-        this.userInfo = userService.getUserInfo();
         this.classUserInfoWithChild = userService.getClassUserInfoWithChild();
         this.classTeacher = userService.getClassTeacher();
 
