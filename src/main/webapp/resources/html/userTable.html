@@ -1,0 +1,47 @@
+<!-- Main content -->
+<div class="callout callout-info">
+    <h4>提示</h4>
+
+    <p>在这里可以查看班级用户的信息，也可以删除用户</p>
+</div>
+<section class="content" ng-controller="userCtrl">
+    <div class="row">
+        <div class=" center-block">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">班级教师信息表</h3>
+
+                    <div class="box-tools pull-right">
+                        <div class="has-feedback">
+                            <input type="text" class="form-control input-sm" placeholder="Search Mail">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body no-padding">
+                    <user-table table="parentWithChildTable"></user-table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" center-block">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">班级家长与学生信息表</h3>
+
+                    <div class="box-tools pull-right">
+                        <div class="has-feedback">
+                            <input type="text" class="form-control input-sm" placeholder="Search Mail">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body no-padding">
+                    <user-table table="teacherTable"></user-table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
