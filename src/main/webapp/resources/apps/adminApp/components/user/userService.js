@@ -4,7 +4,7 @@
 angular.module('userModule')
     .constant('userInfoUrl', '/user/show')
     .constant('classUserInfoUrl', '/user/members')
-    .constant('classUserInfoWithChildUrl', '/webapp/user/lassUserInfoWithChild')
+    .constant('classUserInfoWithChildUrl', '/webapp/user/classUserInfoWithChild')
     .constant('classUserInfoTeacherUrl', '/webapp//user/classTeacher')
     .constant('userDeleteUrl', '/webapp/user/delete')
     .constant('teacherAddUrl', '/webapp/user/addTeacher')
@@ -34,61 +34,64 @@ angular.module('userModule')
             };
 
         return {
-            getUserInfo: function () {
-                var userInfo = {};
-                $http.get(userInfoUrl, httpGetSetting)
-                    .then(function (response) {
-                        userInfo = response.data.body;
-                    }, function (error) {
-                        console.log(error);
-                    });
-                return userInfo;
-            },
-
-            getClassUserInfo: function () {
-                $http.get(classUserInfoUrl, httpGetSetting)
-                    .then(function (response) {
-                        classUserInfo = response.data.body;
-                    }, function (error) {
-                        console.log(error);
-                    });
-                return classUserInfo;
-            },
-
-            getClassUserInfoWithChild: function () {
-                $http.get(classUserInfoWithChildUrl, httpGetSetting)
-                    .then(function (response) {
-                        classUserInfoWithChild = response.data.body;
-                    }, function (error) {
-                        console.log(error);
-                    });
-
-                return classUserInfoWithChild;
-            },
-
-            getClassTeacher: function () {
-                $http.get(classUserInfoTeacherUrl, httpGetSetting)
-                    .then(function (response) {
-                        classTeacher = response.data.body;
-                    }, function (error) {
-                        console.log(error);
-                    });
-                return classTeacher;
-            },
-            //
-            // userInfoInit: function () {
-            //
+            // getUserInfo: function () {
+            //     var userInfo = {};
+            //     $http.get(userInfoUrl, httpGetSetting)
+            //         .then(function (response) {
+            //             userInfo = response.data.body;
+            //         }, function (error) {
+            //             console.log(error);
+            //         });
+            //     return userInfo;
             // },
             //
-            // classUserInfoInit: function () {
-            //
+            // getClassUserInfo: function () {
+            //     $http.get(classUserInfoUrl, httpGetSetting)
+            //         .then(function (response) {
+            //             classUserInfo = response.data.body;
+            //         }, function (error) {
+            //             console.log(error);
+            //         });
+            //     return classUserInfo;
             // },
             //
-            // classUserInfoWithChildInit: function () {
+            // getClassUserInfoWithChild: function () {
+            //     $http.get(classUserInfoWithChildUrl, httpGetSetting)
+            //         .then(function (response) {
+            //             classUserInfoWithChild = response.data.body;
+            //         }, function (error) {
+            //             console.log(error);
+            //         });
+            //
+            //     return classUserInfoWithChild;
             // },
             //
-            // classUserInfoTeacherInit: function () {
+            // getClassTeacher: function () {
+            //     $http.get(classUserInfoTeacherUrl, httpGetSetting)
+            //         .then(function (response) {
+            //             classTeacher = response.data.body;
+            //         }, function (error) {
+            //             console.log(error);
+            //         });
+            //     return classTeacher;
             // },
+
+            userInfoInit: function () {
+                return $http.get(userInfoUrl, httpGetSetting);
+            },
+
+            classUserInfoInit: function () {
+                return $http.get(classUserInfoUrl, httpGetSetting);
+            },
+
+            classUserInfoWithChildInit: function () {
+                return $http.get(classUserInfoWithChildUrl, httpGetSetting);
+
+            },
+
+            classUserInfoTeacherInit: function () {
+                return $http.get(classUserInfoTeacherUrl, httpGetSetting);
+            },
 
             addParent: function (parentWithChildInfoArr) {
                 $http.post(parentWithChildAddUrl, parentWithChildInfoArr, httpPostSetting)
@@ -105,7 +108,7 @@ angular.module('userModule')
                 $http.post(teacherAddUrl, teacherInfoArr, httpPostSetting)
                     .than(function (response) {
 
-                    },function (error) {
+                    }, function (error) {
 
                     });
             },
@@ -124,4 +127,3 @@ angular.module('userModule')
             }
         };
     });
-

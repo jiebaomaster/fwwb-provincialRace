@@ -150,21 +150,21 @@ public interface UsersMapper {
             "u.id, u.phone, u.users_name, u.sex,u.class_id,u.avatar_url, u.background_url, u.have_red_flower,",
             "s.name,s.student_num,s.sex",
             "from users u,students s",
-            "where u.class_id = #{class_id,jdbcType=INTEGER} and s.parent_id=u.id",
+            "where u.class_id = #{classId,jdbcType=INTEGER} and s.parent_id=u.id",
             "order by s.student_num"
     })
     @Results({
-            @Result(column = "u.id", property = "uid", jdbcType = JdbcType.INTEGER, id = true),
-            @Result(column = "u.phone", property = "user_mobile", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "u.users_name", property = "user_name", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "u.sex", property = "parent_sex", jdbcType = JdbcType.CHAR),
-            @Result(column = "u.class_id", property = "class_id", jdbcType = JdbcType.INTEGER),
-            @Result(column = "u.avatar_url", property = "avatar_url", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "u.background_url", property = "background_url", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "u.have_red_flower", property = "have_red_flower", jdbcType = JdbcType.BIT),
-            @Result(column = "s.name", property = "child_name", jdbcType = JdbcType.CHAR),
-            @Result(column = "s.student_num", property = "child_no", jdbcType = JdbcType.CHAR),
-            @Result(column = "s.sex", property = "child_sex", jdbcType = JdbcType.CHAR)
+            @Result(column = "id", property = "id", jdbcType = JdbcType.INTEGER, id = true),
+            @Result(column = "phone", property = "user_mobile", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "users_name", property = "user_name", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "sex", property = "parent_sex", jdbcType = JdbcType.CHAR),
+            @Result(column = "class_id", property = "class_id", jdbcType = JdbcType.INTEGER),
+            @Result(column = "avatar_url", property = "avatar_url", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "background_url", property = "background_url", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "have_red_flower", property = "have_red_flower", jdbcType = JdbcType.BIT),
+            @Result(column = "name", property = "child_name", jdbcType = JdbcType.CHAR),
+            @Result(column = "student_num", property = "child_no", jdbcType = JdbcType.CHAR),
+            @Result(column = "sex", property = "child_sex", jdbcType = JdbcType.CHAR)
     })
     List<UserWithChildDTO> selectUserWithChildDTOByClassId(Users users);
 
@@ -173,21 +173,20 @@ public interface UsersMapper {
             "select",
             "u.id, u.phone, u.users_name, u.sex, u.class_id, u.avatar_url, u.background_url,",
             "t.teacher_num,t.teacher_type",
-            "background_url, have_red_flower",
             "from users u,teachers t",
-            "where u.class_id = #{class_id,jdbcType=INTEGER} and t.user_id=u.id",
+            "where u.class_id = #{classId,jdbcType=INTEGER} and t.user_id=u.id",
             "order by t.teacher_num"
     })
     @Results({
-            @Result(column = "u.id", property = "uid", jdbcType = JdbcType.INTEGER, id = true),
-            @Result(column = "u.phone", property = "user_mobile", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "u.users_name", property = "user_name", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "u.sex", property = "parent_sex", jdbcType = JdbcType.CHAR),
-            @Result(column = "u.class_id", property = "class_id", jdbcType = JdbcType.INTEGER),
-            @Result(column = "u.avatar_url", property = "avatar_url", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "u.background_url", property = "background_url", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "t.teacher_num", property = "teacher_no", jdbcType = JdbcType.INTEGER),
-            @Result(column = "t.teacher_type", property = "teacher_type", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "id", property = "id", jdbcType = JdbcType.INTEGER, id = true),
+            @Result(column = "phone", property = "user_mobile", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "users_name", property = "user_name", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "sex", property = "sex", jdbcType = JdbcType.CHAR),
+            @Result(column = "class_id", property = "class_id", jdbcType = JdbcType.INTEGER),
+            @Result(column = "avatar_url", property = "avatar_url", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "background_url", property = "background_url", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "teacher_num", property = "teacher_no", jdbcType = JdbcType.INTEGER),
+            @Result(column = "teacher_type", property = "teacher_type", jdbcType = JdbcType.VARCHAR),
     })
     List<TeacherUserDTO> selectTeacherUserDTOByClassId(Users users);
 

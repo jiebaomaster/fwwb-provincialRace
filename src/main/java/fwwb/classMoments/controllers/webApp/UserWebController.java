@@ -98,6 +98,7 @@ public class UserWebController {
     ) {
         int uid = Integer.parseInt(httpServletRequest.getHeader("uid"));
         List<UserWithChildDTO> userWithChildDTOS;
+
         try {
             userWithChildDTOS = userService.doGetMembersWithChildDTOByUid(uid);
         } catch (Exception e) {
@@ -114,6 +115,7 @@ public class UserWebController {
     ) {
         int uid = Integer.parseInt(httpServletRequest.getHeader("uid"));
         List<TeacherUserDTO> teacherUserDTOS;
+
         try {
             teacherUserDTOS = userService.doGetTeacherUserDTOByUid(uid);
         } catch (Exception e) {

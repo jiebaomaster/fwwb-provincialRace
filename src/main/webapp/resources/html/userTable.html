@@ -4,7 +4,7 @@
 
     <p>在这里可以查看班级用户的信息，也可以删除用户</p>
 </div>
-<section class="content" ng-controller="userCtrl">
+<section class="content">
     <div class="row">
         <div class=" center-block">
             <div class="box box-primary">
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="box-body no-padding">
-                    <user-table table="parentWithChildTable"></user-table>
+                    <user-table table-type="teacherTable"></user-table>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="box-body no-padding">
-                    <user-table table="teacherTable"></user-table>
+                    <user-table table-type="parentWithChildTable"></user-table>
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@ public class UserWithChildDTO {
 
     private String parent_sex;
 
-    private int class_id;
+    private Integer class_id;
 
     private String avatar_url;
 

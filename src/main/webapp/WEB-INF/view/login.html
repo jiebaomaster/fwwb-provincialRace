@@ -5,6 +5,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>班级圈登录</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -31,12 +34,10 @@
     <div class="login-logo">
         <a href="../../index2.html"><b>班级</b>圈</a>
     </div>
-    <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">进入后台管理系统</p>
 
         <form  action="/webapp/user/doLogin" method="post" id="loginForm">
-        <!--<form action="http://www.onlinebaoplan.top/webapp/login" method="post" id="loginForm">-->
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" id="phone_num" name="phone_num" placeholder="请输入手机号">
                 <span class="glyphicon glyphicon-phone form-control-feedback"></span>
@@ -53,21 +54,14 @@
                         </label>
                     </div>
                 </div>
-                <!-- /.col -->
                 <div class="col-xs-4">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
                 </div>
-                <!-- /.col -->
             </div>
         </form>
-        <!-- /.social-auth-links -->
-
         <a href="#">忘记密码</a><br>
-
     </div>
-    <!-- /.login-box-body -->
 </div>
-<!-- /.login-box -->
 
 <!-- jQuery 2.2.3 -->
 <script src="../../resources/lib/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -84,33 +78,7 @@
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' // optional
         });
-
-        function submitdata(e) {
-            e.preventDefault();
-            var data = {
-                "phone_num": $('#phone_num').val(),
-                "password": $('#password').val()
-            };
-            alert(JSON.stringify(data));
-            $.ajax({
-                url: "http://localhost:8000/webapp/testAjax",
-                type: 'POST',
-                data: JSON.stringify(data),
-//                dataType: 'json',
-                contentType: 'application/json',
-                success: function (data, status, xhr) {
-                    alert(data);
-                },
-                Error: function (xhr, error, exception) {
-                    // handle the error.
-                    alert(exception.toString());
-                }
-            });
-        }
-
-//        $("#loginForm").bind("submit", submitdata);
     });
-
 </script>
 </body>
 </html>

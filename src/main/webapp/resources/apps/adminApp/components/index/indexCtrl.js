@@ -3,5 +3,8 @@
  */
 angular.module("adminApp")
     .controller('IndexCtrl', function (userService) {
-        this.userInfo = userService.getUserInfo();
+        var self = this;
+        userService.userInfoInit().then(function (res) {
+            self.userInfo = res.data.body;
+        })
     });

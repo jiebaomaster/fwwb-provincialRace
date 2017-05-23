@@ -7,24 +7,25 @@ angular.module('adminApp')
 
         $routeProvider.when("/userAdmin", {
             templateUrl: "/resources/html/userTable.html",
-            controller:"userTable"
+            controller:"UserTableCtrl",
+            controllerAs:"user"
         });
 
-        $routeProvider.when("/deleteOrSelect", {
-            templateUrl: "../../resources/html/teacherTable.html"
-        });
-
-        $routeProvider.when("/issuegk", {
-            templateUrl: "../../resources/html/fbgg.html"
-        });
-
-        $routeProvider.when("/pushScore", {
-            templateUrl: "../../resources/html/pushScore.html"
-        });
-
-        $routeProvider.when("/redfellow", {
-            templateUrl: "../../resources/html/redfellow.html"
-        });
+        // $routeProvider.when("/deleteOrSelect", {
+        //     templateUrl: "/resources/html/teacherTable.html"
+        // });
+        //
+        // $routeProvider.when("/issuegk", {
+        //     templateUrl: "/resources/html/fbgg.html"
+        // });
+        //
+        // $routeProvider.when("/pushScore", {
+        //     templateUrl: "/resources/html/pushScore.html"
+        // });
+        //
+        // $routeProvider.when("/redfellow", {
+        //     templateUrl: "/resources/html/redfellow.html"
+        // });
 
         $routeProvider.when("/index", {
             templateUrl: "/resources/html/index.html"

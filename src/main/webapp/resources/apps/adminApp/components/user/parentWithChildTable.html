@@ -27,11 +27,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in classUserInfoWithChild">
+        <tr ng-repeat="item in user.classUserInfoWithChild">
             <td><input type="checkbox"></td>
-            <td class="mailbox-star mailbox"><a href="#"><i class="fa text-yellow">{{redFlowerTransform(item.have_red_flower)}}</i></a></td>-
+            <td class="mailbox-star mailbox"><a><i class="fa text-yellow">{{redFlowerTransform(item.have_red_flower)}}</i></a></td>-
             <td class="mailbox-messages">{{item.user_name}}</td>
-            <td class="mailbox-messages">{{item.user_sex}}</td>
+            <td class="mailbox-messages">{{item.parent_sex}}</td>
             <td class="mailbox-messages">{{item.user_mobile}}</td>
             <td class="mailbox-messages">{{item.child_name}}</td>
             <td class="mailbox-messages">{{item.child_no}}</td>
