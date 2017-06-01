@@ -2,7 +2,7 @@
  * Created by hongcj on 2017/5/18.
  */
 
-angular.module("userFilters", [])
+angular.module("pageFilter", [])
     .filter("unique", function () {
         return function (data, propertyName) {
             if (angular.isArray(data) && angular.isString(propertyName)) {

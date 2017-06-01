@@ -34,48 +34,6 @@ angular.module('userModule')
             };
 
         return {
-            // getUserInfo: function () {
-            //     var userInfo = {};
-            //     $http.get(userInfoUrl, httpGetSetting)
-            //         .then(function (response) {
-            //             userInfo = response.data.body;
-            //         }, function (error) {
-            //             console.log(error);
-            //         });
-            //     return userInfo;
-            // },
-            //
-            // getClassUserInfo: function () {
-            //     $http.get(classUserInfoUrl, httpGetSetting)
-            //         .then(function (response) {
-            //             classUserInfo = response.data.body;
-            //         }, function (error) {
-            //             console.log(error);
-            //         });
-            //     return classUserInfo;
-            // },
-            //
-            // getClassUserInfoWithChild: function () {
-            //     $http.get(classUserInfoWithChildUrl, httpGetSetting)
-            //         .then(function (response) {
-            //             classUserInfoWithChild = response.data.body;
-            //         }, function (error) {
-            //             console.log(error);
-            //         });
-            //
-            //     return classUserInfoWithChild;
-            // },
-            //
-            // getClassTeacher: function () {
-            //     $http.get(classUserInfoTeacherUrl, httpGetSetting)
-            //         .then(function (response) {
-            //             classTeacher = response.data.body;
-            //         }, function (error) {
-            //             console.log(error);
-            //         });
-            //     return classTeacher;
-            // },
-
             userInfoInit: function () {
                 return $http.get(userInfoUrl, httpGetSetting);
             },

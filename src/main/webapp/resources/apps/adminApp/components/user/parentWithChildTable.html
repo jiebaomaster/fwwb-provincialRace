@@ -1,13 +1,18 @@
 <div class="mailbox-controls">
     <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
     <div class="btn-group">
-        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+        <button type="button" class="btn btn-default btn-sm editBtn"><i class="fa fa-edit"></i></button>
+        <button type="button" class="btn btn-default btn-sm updateBtn"><i class="fa fa-cloud-upload"></i></button>
+        <button type="button" class="btn btn-default btn-sm deleteBtn"><i class="fa fa-trash-o"></i></button>
     </div>
-    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+    <button type="button" class="btn btn-default btn-sm" ng-click="refreshTable()"><i class="fa fa-refresh"></i></button>
     <div class="pull-right">
-        1-20/40
         <div class="btn-group">
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left" ng-click=""></i></button>
+            <button type="button" class="btn btn-default btn-sm" ng-repeat="page in pageButtons"
+                ng-click="selectPage($index+1)">
+                {{$index+1}}
+            </button>
             <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
         </div>
     </div>
@@ -27,9 +32,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in user.classUserInfoWithChild">
-            <td><input type="checkbox"></td>
-            <td class="mailbox-star mailbox"><a><i class="fa text-yellow">{{redFlowerTransform(item.have_red_flower)}}</i></a></td>-
+        <tr ng-repeat="item in userTable4Show">
+            <td class="mailbox-messages"><input type="checkbox" my-checkbox></td>
+            <td class="mailbox-star mailbox" my-golden-star><a><i class="fa text-yellow">{{redFlowerTransform(item.have_red_flower)}}</i></a></td>
             <td class="mailbox-messages">{{item.user_name}}</td>
             <td class="mailbox-messages">{{item.parent_sex}}</td>
             <td class="mailbox-messages">{{item.user_mobile}}</td>
