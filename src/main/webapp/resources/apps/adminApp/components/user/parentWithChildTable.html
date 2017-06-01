@@ -1,19 +1,19 @@
 <div class="mailbox-controls">
-    <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
+    <button type="button" class="btn btn-default btn-sm checkbox-toggle" ng-click="selectAll()"><i class="fa fa-square-o"></i></button>
     <div class="btn-group">
-        <button type="button" class="btn btn-default btn-sm editBtn"><i class="fa fa-edit"></i></button>
-        <button type="button" class="btn btn-default btn-sm updateBtn"><i class="fa fa-cloud-upload"></i></button>
-        <button type="button" class="btn btn-default btn-sm deleteBtn"><i class="fa fa-trash-o"></i></button>
+        <button type="button" class="btn btn-default btn-sm editBtn" ng-click="userEdit()"><i class="fa fa-edit"></i></button>
+        <button type="button" class="btn btn-default btn-sm updateBtn" ng-click="userUpdate()"><i class="fa fa-cloud-upload"></i></button>
+        <button type="button" class="btn btn-default btn-sm deleteBtn" ng-click="userDelete()"><i class="fa fa-trash-o"></i></button>
     </div>
     <button type="button" class="btn btn-default btn-sm" ng-click="refreshTable()"><i class="fa fa-refresh"></i></button>
     <div class="pull-right">
         <div class="btn-group">
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left" ng-click=""></i></button>
+            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left" ng-click="prePage()"></i></button>
             <button type="button" class="btn btn-default btn-sm" ng-repeat="page in pageButtons"
                 ng-click="selectPage($index+1)">
                 {{$index+1}}
             </button>
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right" ng-click="nextPage()"></i></button>
         </div>
     </div>
 </div>

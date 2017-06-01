@@ -52,7 +52,7 @@
     <script src="../../resources/apps/adminApp/components/user/directives.js"></script>
 
     <script>
-        angular.module('adminApp', ['ngRoute', 'userModule']);
+        angular.module('adminApp', ['ngRoute', 'userModule','momentModule']);
     </script>
     <script src="../../resources/admin.route.js"></script>
     <script src="../../resources/apps/adminApp/components/index/indexCtrl.js"></script>
@@ -111,8 +111,8 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#/userAdmin"><i class="fa fa-circle-o"></i> 增加新用户</a></li>
-                        <li><a href="#/deleteOrSelect"><i class="fa fa-circle-o"></i> 查看与删除</a></li>
+                        <li><a href="#/userAdmin"><i class="fa fa-circle-o"></i> 查看与删除</a></li>
+                        <li><a href="#/deleteOrSelect"><i class="fa fa-circle-o"></i> 增加新用户</a></li>
                     </ul>
 
                 </li>
@@ -125,8 +125,8 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#/timeline"><i class="fa fa-circle-o"></i> 查看动态</a></li>
-                        <li><a href="#/picTimeline"><i class="fa fa-circle-o"></i> 查看图片动态</a></li>
+                        <li><a href="#/classTimeline"><i class="fa fa-circle-o"></i> 管理班级动态</a></li>
+                        <li><a href="#/myTimeline"><i class="fa fa-circle-o"></i> 我的动态</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

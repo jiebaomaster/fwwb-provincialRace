@@ -26,11 +26,21 @@ angular.module("userModule")
                 scope.pageButtons = [];
 
                 scope.selectPage = function (newPage) {
+                    pageSelectCount = newPage;
                     scope.userTable4Show = range(userTable, newPage, userInfoPageSize);
                 };
 
                 //数据加载完成时，调用
-                scope.$on('userTableDataLoaded', init);
+                scope.$on('userTableDataLoaded', function () {
+                    //根据表名得到不同的数据
+                    var userScope = scope.$parent.user;
+                    userTable = attrs["tableType"] === "parentWithChildTable" ?
+                        userScope.classUserInfoWithChild : userScope.classTeacher;
+
+                    scope.pageButtons = pageCount(userTable, userInfoPageSize);
+                    pageSelectCount = 1;
+                    scope.selectPage(pageSelectCount);
+                });
 
                 //根据有无小红花字段动态添加样式
                 scope.redFlowerTransform = function (haveRedFlower) {
@@ -39,22 +49,9 @@ angular.module("userModule")
                 };
 
 
-                //按钮动作
-                //刷新
-                scope.refreshTable = function () {
-                    $location.path('/userAdmin');
-                };
-                //删除用户
-                scope.userDelete = function () {
-                    userService.deleteUser(selectUserArr);
-                };
-                //用户数据更新
-                scope.update = function () {
-                };
-
-
+                //按钮组动作
                 //全选
-                ele.find(".checkbox-toggle").bind('click', function () {
+                scope.selectAll = function () {
                     var $this = $(this);
                     var clicks = $this.data('clicks');
                     if (clicks) {
@@ -67,25 +64,36 @@ angular.module("userModule")
                         $this.find(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
                     }
                     $this.data("clicks", !clicks);
-                });
+                };
+                //编辑
+                scope.userEdit = function () {
 
-                //选择删除
-                ele.find("i.fa-trash-o").bind('click', function (e) {
+                };
+                //用户数据更新
+                scope.userUpdate = function () {
+                };
+                //删除用户
+                scope.userDelete = function () {
+                    userService.deleteUser(selectUserArr);
                     ele.find('.checked').parent().parent().remove();
                     alert("删除用户成功！");
-                });
-
-                //数据显示初始化
-                function init() {
-                    //根据表名得到不同的数据
-                    var userScope = scope.$parent.user;
-                    userTable = attrs["tableType"] === "parentWithChildTable" ?
-                        userScope.classUserInfoWithChild : userScope.classTeacher;
-
-                    scope.pageButtons = pageCount(userTable, userInfoPageSize);
-                    pageSelectCount = 1;
-                    scope.selectPage(pageSelectCount);
-                }
+                };
+                //刷新
+                scope.refreshTable = function () {
+                    $location.path('/userAdmin');
+                };
+                //上一页
+                scope.prePage = function () {
+                    if (pageSelectCount > 1) {
+                        scope.selectPage(--pageSelectCount);
+                    }
+                };
+                //下一页
+                scope.nextPage = function () {
+                    if (pageSelectCount < scope.pageButtons.length)  {
+                        scope.selectPage(++pageSelectCount);
+                    }
+                };
 
                 //得到分页显示的数据
                 function range(table, page, size) {
@@ -115,9 +123,6 @@ angular.module("userModule")
                     }
                 }
             },
-            controller: function ($scope) {
-
-            },
             scope: true
         };
     })
@@ -142,7 +147,8 @@ angular.module("userModule")
             link: function (scope, element, attrs) {
                 $(element).iCheck({
                     checkboxClass: 'icheckbox_flat-blue',
-                    radioClass: 'iradio_flat-blue'
+                    radioClass: 'iradio_flat-blue',
+                    increaseArea:'20%'
                 });
             }
         };

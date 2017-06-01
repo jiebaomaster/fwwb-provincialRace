@@ -11,10 +11,18 @@ angular.module('adminApp')
             controllerAs:"user"
         });
 
-        // $routeProvider.when("/deleteOrSelect", {
-        //     templateUrl: "/resources/html/teacherTable.html"
-        // });
-        //
+        $routeProvider.when('/classTimeline',{
+            templateUrl:'/resources/html/classMomentTimeLine.html',
+            controller:'ClassMomentTableCtrl',
+            controllerAs:'moment'
+        });
+
+        $routeProvider.when('/myTimeline',{
+            templateUrl:'/resources/html/myMomentTimeline.html',
+            controller:'MyMomentTableCtrl',
+            controllersAs:'moment'
+        });
+
         // $routeProvider.when("/issuegk", {
         //     templateUrl: "/resources/html/fbgg.html"
         // });
