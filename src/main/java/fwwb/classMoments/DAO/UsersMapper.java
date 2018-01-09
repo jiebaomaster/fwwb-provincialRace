@@ -190,6 +190,11 @@ public interface UsersMapper {
     })
     List<TeacherUserDTO> selectTeacherUserDTOByClassId(Users users);
 
+    /**
+     * 批量添加家长用户
+     * @param list 新用户列表
+     * @return 插入数量
+     */
     @Insert({
             "<script>",
             "insert into users (phone, users_name, class_id, sex)",

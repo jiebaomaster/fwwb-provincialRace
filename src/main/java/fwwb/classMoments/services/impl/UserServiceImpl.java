@@ -46,10 +46,19 @@ public class UserServiceImpl implements UserService {
                 .equals(token);
     }
 
+    /**
+     * 根据手机号和密码登陆
+     * @param phoneNum 手机号
+     * @param password 密码
+     * @return 用户基本信息
+     * @throws NoSuchAlgorithmException
+     * @throws UnsupportedEncodingException
+     */
     @Transactional
     @Override
     public Users doLogin(String phoneNum, String password
     ) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        // 根据访问数据库，根据手机号获取用户信息
         Users users = usersMapper.selectByPhone(phoneNum);
         if (users != null && users.getPasswd().equals(password)) {
             //设置新的token

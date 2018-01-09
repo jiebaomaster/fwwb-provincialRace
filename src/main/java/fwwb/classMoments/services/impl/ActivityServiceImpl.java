@@ -59,6 +59,12 @@ public class ActivityServiceImpl implements ActivityService {
         return doShowActivity(activities.getId());
     }
 
+    /**
+     * 加入活动
+     * @param activity_id 活动id
+     * @param uid 用户id
+     * @return 活动基本信息
+     */
     @Override
     public ActivityDTO doJoinActivity(int activity_id, int uid) {
         UsersActivity usersActivity = new UsersActivity(uid, activity_id);
@@ -66,6 +72,12 @@ public class ActivityServiceImpl implements ActivityService {
         return doShowActivity(activity_id);
     }
 
+    /**
+     * 退出活动
+     * @param activity_id 活动id
+     * @param uid 用户id
+     * @return 活动基本信息
+     */
     @Override
     @Transactional
     public ActivityDTO doQuitActivity(int activity_id, int uid) {

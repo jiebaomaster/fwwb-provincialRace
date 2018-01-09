@@ -56,6 +56,13 @@ public class MomentServiceImpl implements MomentService {
         momentsModelList.forEach(momentsModel -> momentsModel.setUsers(usersMapper.selectByPrimaryKey(momentsModel.getPoster_id())));
     }
 
+    /**
+     * 获取班级圈的全员动态，支持分页获取
+     * @param class_id 班级id
+     * @param count 每页数量
+     * @param page 页码
+     * @return 班级圈动态
+     */
     @Transactional
     @Override
     public List<MomentsModel> doGetClassMomentsByClassId(int class_id, int count, int page) {
@@ -92,16 +99,24 @@ public class MomentServiceImpl implements MomentService {
         return momentsModel;
     }
 
+    /**
+     * 用户发布动态
+     * @param uid 用户id
+     * @param momentIssueDTO 动态发布信息对象
+     * @return 动态基本信息对象
+     */
     @Transactional
     @Override
     public MomentsModel doIssueMomentByUid(int uid, MomentIssueDTO momentIssueDTO) {
+        // 获取用户基本信息
         Users users = usersMapper.selectByPrimaryKey(uid);
+        // 动态发布信息对象添加用户基本信息
         Moments newMoments = momentConvert.momentIssueDTO2MomentsEntity(momentIssueDTO, uid, users.getClassId(), 50);
-        //存储动态
+        // 存储动态
         momentsMapper.insert(newMoments);
         int moment_id = newMoments.getId();
 
-        //存储动态的资源
+        // 存储动态的资源
         Source[] sourceArr = momentIssueDTO.getSources();
         if (sourceArr != null) {
             for (Source source : sourceArr) {
@@ -109,11 +124,18 @@ public class MomentServiceImpl implements MomentService {
                 sourceMapper.insertGenerated(source);
             }
         }
+
+        // 拼装动态基本信息对象
         MomentsModel momentsModel = momentsMapper.selectByPrimaryKey(moment_id);
         momentsModel.setUsers(usersMapper.selectByPrimaryKey(momentsModel.getPoster_id()));
         return momentsModel;
     }
 
+    /**
+     * 用户删除动态
+     * @param moment_id 动态id
+     * @return 动态基本信息
+     */
     @Transactional
     @Override
     public MomentsModel doDeleteMomentById(int moment_id) {
